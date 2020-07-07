@@ -5,12 +5,10 @@ function calculateTextBill() {
     //var smsCost = 0
     var callsTotal = 0
     var smsTotal = 0
-    var totalCost = 0
+   // var totalCost = 0
 
 
     function textBillTotal(billTypeEntered) {
-
-        var billType = billTypeEntered.trim();
 
         if (billTypeEntered === "call") {
             callsTotal += 2.75
@@ -19,22 +17,35 @@ function calculateTextBill() {
             smsTotal += 0.75;
         }
     }
+        function getCallTotal() {
 
-    function getCallTotal() {
-        return callsTotal;
+            return callsTotal;
 
+        }
+        function getSmsTotal() {
+            return smsTotal;
+        }
+        function getTotal() {
+            return smsTotal + callsTotal;
+            
+        }
+        function styleColor() {
+
+            if (getTotal() >= 30) {
+                return "danger"
+            } else if (getTotal() >= 20) {
+                return "warning"
+            }
+            
+        }
+    
+        return {
+            //calculateTextBill,
+            textBillTotal,
+            getCallTotal,
+            getSmsTotal,
+            getTotal,
+            styleColor,
+        }
     }
-    function getSmsTotal() {
-        return smsTotal;
-    }
-    function getTotal() {
-        totalCost = smsTotal + callsTotal;
-        return totalCost;
-    }
-    return {
-        textBillTotal,
-        getCallTotal,
-        getSmsTotal,
-        getTotal,
-    }
-}
+
